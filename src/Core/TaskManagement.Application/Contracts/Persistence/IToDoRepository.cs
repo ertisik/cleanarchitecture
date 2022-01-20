@@ -5,7 +5,7 @@ using TaskManagement.Domain.Entities;
 
 namespace TaskManagement.Application.Contracts.Persistence
 {
-    public interface IToDoRepository
+    public interface IToDoRepository : IAsyncRepository<ToDo>
     {
         Task<List<ToDo>> ToDoListByDate(DateTime date, int page, int size);
         Task<int> GetTotalCountOfToDoByDate(DateTime date);

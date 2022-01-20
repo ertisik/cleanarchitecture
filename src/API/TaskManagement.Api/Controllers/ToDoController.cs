@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using TaskManagement.Application.Features.Tasks.Commands;
 using TaskManagement.Application.Features.Tasks.Queries.ToDoListByDate;
 
 namespace TaskManagement.Api.Controllers
@@ -28,6 +29,14 @@ namespace TaskManagement.Api.Controllers
             };
 
             var response = await mediator.Send(toDoListByDateQuery);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CreateToDoCommandResponse>> Create([FromBody] CreateToDoCommand model)
+        {
+            var response = await mediator.Send(model);
 
             return Ok(response);
         }
